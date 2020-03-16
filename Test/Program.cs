@@ -1,13 +1,64 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
+using System.Net.Http;
 using System.Text;
+using System.Web.Mvc;
+using Test.Models;
 
 namespace Test
 {
     class Program
     {
-
         static void Main(string[] args)
         {
+            var xx = GetData();
+            foreach (var item in xx)
+            {
+                Console.WriteLine("****************************************");
+                Console.WriteLine("// ID : {0}",item.id);
+                Console.WriteLine("// ROOM : {0}",item.room);
+                Console.WriteLine("// DATA({1}) : {0}", item.data, item.data.Split(",").Length);
+                Console.WriteLine("// NAME : {0}", item.name);
+                Console.WriteLine("// % : {0}", item.percent);
+                Console.WriteLine("// DEALER : {0}", item.dealer);
+                Console.WriteLine("// IMG : {0}", item.img);
+                Console.WriteLine("// CARD : {0}", item.card);
+
+                //Console.WriteLine("DATA : {0}", item.data.Split(",").Length);
+
+                //sb = sb.Append(item.data+" ");
+                string[] ll = item.data.Split(",");
+                int count = 0;
+
+                for (int i = 0; i < ll.Length; i++)
+                {
+
+                    if (ll[i] == "p")
+                    {
+                        count = 0;
+                    }
+                    else
+                    {
+                        count++;
+                    }
+                    if (count == 4)
+                    {
+                        Console.WriteLine("RUN!!");
+                        //System.Diagnostics.Process.Start("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+                        break;
+                    }
+                    else
+                    {
+                        Console.Write(".");
+                    }
+
+                }
+                Console.WriteLine();
+
+            }
+
+
             //Console.Write("Enter Number");
             //string text = Console.ReadLine();
             //do
@@ -23,10 +74,10 @@ namespace Test
             //    text = Console.ReadLine();
             //} while (text != "stop");
             //EqualVsOpEquals();
-            string x = "CID:1234567890121,Result:Pass:[CID IsExist],Result:Pass:[checkbox=True],Result:Fail:[Username is Exist],Result:Pass:[testuserx],Result:Pass[checkbox=True],user:[testuserx],Result:Pass:[testuserx],Result:Register:[Done]";
-            var xx = x.Length;
-            Console.WriteLine(xx);
-            Console.ReadLine();
+            //string x = "CID:1234567890121,Result:Pass:[CID IsExist],Result:Pass:[checkbox=True],Result:Fail:[Username is Exist],Result:Pass:[testuserx],Result:Pass[checkbox=True],user:[testuserx],Result:Pass:[testuserx],Result:Register:[Done]";
+            //var xx = x.Length;
+            //Console.WriteLine(xx);
+            //Console.ReadLine();
             //foreach (char c in text)
             //{
             //    int unicode = c;
@@ -34,12 +85,31 @@ namespace Test
             //}
 
         }
-
+        [HttpGet]
+        public static Ans[] GetData()
+        {
+            using (var client = new HttpClient())
+            {
+                //Ans[] ansx = new Ans();
+                client.BaseAddress = new Uri("https://newsa.zean.app/");
+                var response = client.GetAsync(client.BaseAddress).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = response.Content.ReadAsStringAsync().Result;
+                    Ans[] item = JsonConvert.DeserializeObject<Ans[]>(responseString);
+                    return item;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
         private static void EqualVsOpEquals()
         {
             String nameA = "Chatri Ngambenchawong";
             String nameB = "Chatri Ngambenchawong";
-            char[] values = {'C','h','a','t','r','i',' ','N','g','a','m','b','e','n','c','h','a','w','o','n','g'};
+            char[] values = { 'C', 'h', 'a', 't', 'r', 'i', ' ', 'N', 'g', 'a', 'm', 'b', 'e', 'n', 'c', 'h', 'a', 'w', 'o', 'n', 'g' };
             String nameC = new String(values);
             //=================================================
             //Test 1
@@ -120,7 +190,7 @@ namespace Test
                 if (now == befor + 1)//forword
                 {
                     forword++;
-                    if (forword >=max)
+                    if (forword >= max)
                     {
                         return false;
                     }
