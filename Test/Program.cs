@@ -62,7 +62,7 @@ namespace Test
             //Console.Write("Enter Number");
             //string text = Console.ReadLine();
             //do
-            //{55555555555555555555555555555555555555555555555555555555555
+            //{
             //    if (OverCheck(text))
             //    {
             //        Console.WriteLine("\nOK");
