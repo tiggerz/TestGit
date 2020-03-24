@@ -12,51 +12,54 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var xx = GetData();
-            foreach (var item in xx)
-            {
-                Console.WriteLine("****************************************");
-                Console.WriteLine("// ID : {0}",item.id);
-                Console.WriteLine("// ROOM : {0}",item.room);
-                Console.WriteLine("// DATA({1}) : {0}", item.data, item.data.Split(",").Length);
-                Console.WriteLine("// NAME : {0}", item.name);
-                Console.WriteLine("// % : {0}", item.percent);
-                Console.WriteLine("// DEALER : {0}", item.dealer);
-                Console.WriteLine("// IMG : {0}", item.img);
-                Console.WriteLine("// CARD : {0}", item.card);
+            decimal money = 999.261646m;
+            decimal cw = Math.Round(money, 4);
+            Console.WriteLine(cw.ToString());
+            //var xx = GetData();
+            //foreach (var item in xx)
+            //{
+            //    Console.WriteLine("****************************************");
+            //    Console.WriteLine("// ID : {0}",item.id);
+            //    Console.WriteLine("// ROOM : {0}",item.room);
+            //    Console.WriteLine("// DATA({1}) : {0}", item.data, item.data.Split(",").Length);
+            //    Console.WriteLine("// NAME : {0}", item.name);
+            //    Console.WriteLine("// % : {0}", item.percent);
+            //    Console.WriteLine("// DEALER : {0}", item.dealer);
+            //    Console.WriteLine("// IMG : {0}", item.img);
+            //    Console.WriteLine("// CARD : {0}", item.card);
 
-                //Console.WriteLine("DATA : {0}", item.data.Split(",").Length);
+            //    //Console.WriteLine("DATA : {0}", item.data.Split(",").Length);
 
-                //sb = sb.Append(item.data+" ");
-                string[] ll = item.data.Split(",");
-                int count = 0;
+            //    //sb = sb.Append(item.data+" ");
+            //    string[] ll = item.data.Split(",");
+            //    int count = 0;
 
-                for (int i = 0; i < ll.Length; i++)
-                {
+            //    for (int i = 0; i < ll.Length; i++)
+            //    {
 
-                    if (ll[i] == "p")
-                    {
-                        count = 0;
-                    }
-                    else
-                    {
-                        count++;
-                    }
-                    if (count == 4)
-                    {
-                        Console.WriteLine("RUN!!");
-                        //System.Diagnostics.Process.Start("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-                        break;
-                    }
-                    else
-                    {
-                        Console.Write(".");
-                    }
+            //        if (ll[i] == "p")
+            //        {
+            //            count = 0;
+            //        }
+            //        else
+            //        {
+            //            count++;
+            //        }
+            //        if (count == 4)
+            //        {
+            //            Console.WriteLine("RUN!!");
+            //            //System.Diagnostics.Process.Start("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+            //            break;
+            //        }
+            //        else
+            //        {
+            //            Console.Write(".");
+            //        }
 
-                }
-                Console.WriteLine();
+            //    }
+            //    Console.WriteLine();
 
-            }
+            //}
 
 
             //Console.Write("Enter Number");
